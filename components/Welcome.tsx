@@ -1,6 +1,6 @@
 import theme from "../styles/theme";
 
-const Start = ({ onStart }) => {
+const Welcome = ({ onStart }) => {
   return (
     <div>
       <h1>Welcome to the Trivia Challenge!</h1>
@@ -23,4 +23,4 @@ const Start = ({ onStart }) => {
   );
 };
 
-export default Start;
+export default Welcome;

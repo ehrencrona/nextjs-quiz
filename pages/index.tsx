@@ -62,6 +62,7 @@ export default function Home({
         .container {
           min-width: 0;
           max-width: ${theme.pageWidth};
+          padding: 1em;
         }
       `}</style>
 

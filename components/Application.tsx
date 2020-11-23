@@ -3,7 +3,7 @@ import { default as buildFetchQuestions, Fetch } from "../model/fetchQuestions";
 import Question from "../model/Question";
 import AskQuestion from "./AskQuestion";
 import Results from "./Results";
-import Start from "./Start";
+import Welcome from "./Welcome";
 
 /**
  * Full application logic except for displaying error messages.
@@ -41,7 +41,7 @@ export default function Application({
   };
 
   return !isStarted ? (
-    <Start onStart={onStart} />
+    <Welcome onStart={onStart} />
   ) : questionNumber >= 0 ? (
     <AskQuestion
       question={questions[questionNumber]}
