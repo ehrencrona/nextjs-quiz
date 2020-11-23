@@ -1,9 +1,17 @@
 import logError from "../log/logError";
 import Question from "../model/Question";
 
-// TODO: how do you add a timeout on the server side?
+export type Fetch = (
+  input: RequestInfo,
+  init?: RequestInit
+) => Promise<Response>;
+
 function fetchQuestions(): Promise<Question[]> {
-  return fetch("https://opentdb.com/api.php?amount=3&type=boolean")
+  // window.fetch allows us to inject a mocked fetch in the tests
+  const reallyFetch = typeof window !== 'undefined' && window.fetch || fetch;
+
+  // TODO: we might want short timeouts on the server side
+  return reallyFetch("https://opentdb.com/api.php?amount=10&type=boolean")
     .then((res) => res.json())
     .then((res) =>
       res.results.map(({ correct_answer, category, question }) => ({
@@ -12,32 +20,6 @@ function fetchQuestions(): Promise<Question[]> {
         correct_answer: correct_answer === "True",
       }))
     );
-}
-
-async function fetchWithTimeout(
-  input: RequestInfo,
-  init?: RequestInit & { timeout?: number }
-): Promise<Response> {
-  const { timeout = 0 } = init;
-
-  const controller = new AbortController();
-
-  let onDone = () => {};
-
-  if (timeout) {
-    const id = setTimeout(() => controller.abort(), timeout);
-
-    onDone = () => clearTimeout(id);
-  }
-
-  const response = await fetch(input, {
-    ...init,
-    signal: controller.signal,
-  });
-
-  onDone();
-
-  return response;
 }
 
 /**
@@ -61,6 +43,6 @@ function preload<T>(fn: () => Promise<T>): () => Promise<T> {
   };
 }
 
-const preloadedFetchQuestions = preload(fetchQuestions);
+const buildFetchQuestions = () => preload(() => fetchQuestions());
 
-export default preloadedFetchQuestions;
+export default buildFetchQuestions;

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Application from "../components/Application";
 import Error from "../components/Error";
 import logError from "../log/logError";
-import fetchQuestions from "../model/fetchQuestions";
+import buildFetchQuestions from "../model/fetchQuestions";
 import Question from "../model/Question";
 import globalStyles from "../styles/globalStyles";
 import theme from "../styles/theme";
@@ -11,6 +11,7 @@ import theme from "../styles/theme";
 export async function getServerSideProps() {
   let questions: Question[];
   let error: string = null;
+  const fetchQuestions = buildFetchQuestions();
 
   try {
     questions = await fetchQuestions();

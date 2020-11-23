@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`result page shows correct answers 1`] = `
+<div>
+  <div
+    class="jsx-3893511633"
+  >
+    <h2
+      class="jsx-3893511633"
+    >
+      You scored 
+      2
+       out of 
+      3
+    </h2>
+    <div
+      class="jsx-3893511633 answer correct"
+    >
+      We are living in a simulation.
+    </div>
+    <div
+      class="jsx-3893511633 answer incorrect"
+    >
+      We are living in a simulation.
+    </div>
+    <div
+      class="jsx-3893511633 answer correct"
+    >
+      We are living in a simulation.
+    </div>
+    <button
+      class="jsx-3893511633"
+    >
+      Play again
+    </button>
+  </div>
+</div>
+`;

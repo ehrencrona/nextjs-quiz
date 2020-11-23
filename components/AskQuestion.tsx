@@ -10,8 +10,8 @@ const AskQuestion = ({ question, questionNumber, questionCount, onAnswer }) => {
       </div>
 
       <div className="buttons">
-        <button onClick={() => onAnswer(true)}>Yes</button>
-        <button onClick={() => onAnswer(false)}>No</button>
+        <button onClick={() => onAnswer(true)}>True</button>
+        <button onClick={() => onAnswer(false)}>False</button>
       </div>
 
       <style jsx>{`
