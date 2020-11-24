@@ -3,36 +3,44 @@
 exports[`result page shows correct answers 1`] = `
 <div>
   <div
-    class="jsx-3893511633"
+    class="jsx-305396568 page"
   >
-    <h2
-      class="jsx-3893511633"
-    >
-      You scored 
-      2
-       out of 
-      3
-    </h2>
     <div
-      class="jsx-3893511633 answer correct"
+      class="jsx-305396568 content"
     >
-      We are living in a simulation.
+      <h2
+        class="jsx-1915113496"
+      >
+        You scored 
+        2
+         out of 
+        3
+      </h2>
+      <div
+        class="jsx-1915113496 answer correct"
+      >
+        We are living in a simulation.
+      </div>
+      <div
+        class="jsx-1915113496 answer incorrect"
+      >
+        We are living in a simulation.
+      </div>
+      <div
+        class="jsx-1915113496 answer correct"
+      >
+        We are living in a simulation.
+      </div>
     </div>
     <div
-      class="jsx-3893511633 answer incorrect"
+      class="jsx-305396568 buttons"
     >
-      We are living in a simulation.
+      <button
+        class="jsx-305396568"
+      >
+        Play again
+      </button>
     </div>
-    <div
-      class="jsx-3893511633 answer correct"
-    >
-      We are living in a simulation.
-    </div>
-    <button
-      class="jsx-3893511633"
-    >
-      Play again
-    </button>
   </div>
 </div>
 `;

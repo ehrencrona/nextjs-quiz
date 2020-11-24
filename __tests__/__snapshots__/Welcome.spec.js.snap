@@ -3,28 +3,36 @@
 exports[`welcome page allows for starting 1`] = `
 <div>
   <div
-    class="jsx-2971654016"
+    class="jsx-305396568 page"
   >
-    <h1
-      class="jsx-2971654016"
+    <div
+      class="jsx-305396568 content"
     >
-      Welcome to the Trivia Challenge!
-    </h1>
-    <p
-      class="jsx-2971654016"
+      <h1
+        class="jsx-2971654016"
+      >
+        Welcome to the Trivia Challenge!
+      </h1>
+      <p
+        class="jsx-2971654016"
+      >
+        You will be presented with 10 true or false questions.
+      </p>
+      <p
+        class="jsx-2971654016"
+      >
+        Can you score 100%?
+      </p>
+    </div>
+    <div
+      class="jsx-305396568 buttons"
     >
-      You will be presented with 10 true or false questions.
-    </p>
-    <p
-      class="jsx-2971654016"
-    >
-      Can you score 100%?
-    </p>
-    <button
-      class="jsx-2971654016"
-    >
-      Begin
-    </button>
+      <button
+        class="jsx-305396568"
+      >
+        Begin
+      </button>
+    </div>
   </div>
 </div>
 `;
