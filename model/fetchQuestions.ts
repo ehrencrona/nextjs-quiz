@@ -1,20 +1,34 @@
 import logError from "../log/logError";
 import Question from "../model/Question";
+import fetch from "./fetch";
 
 export type Fetch = (
   input: RequestInfo,
   init?: RequestInit
 ) => Promise<Response>;
 
+const questionCount = 10;
+
+/**
+ * This is isomorphic code; it's used for server props as well as on the client when restarting.
+ */
 function fetchQuestions(): Promise<Question[]> {
-  // window.fetch allows us to inject a mocked fetch in the tests
-  const reallyFetch = (typeof window !== "undefined" && window.fetch) || fetch;
+  const reallyFetch = fetch;
 
   // TODO: we might want short timeouts on the server side
-  return reallyFetch("https://opentdb.com/api.php?amount=10&type=boolean")
-    .then((res) => res.json())
-    .then((res) =>
-      res.results.map(({ correct_answer, category, question }) => ({
+  return reallyFetch(
+    // I removed "difficulty" since it resulted in the same questions over and over
+    `https://opentdb.com/api.php?amount=${questionCount}&type=boolean`
+  )
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error(res.statusText);
+      }
+    })
+    .then((json) =>
+      json.results.map(({ correct_answer, category, question }) => ({
         category,
         question,
         correct_answer: correct_answer === "True",
@@ -23,26 +37,36 @@ function fetchQuestions(): Promise<Question[]> {
 }
 
 /**
- * Keeps a pre-loaded result of `fn` around so it returns immediately
- * (TODO: won't work well under high load; should keep a buffer of multiple preloads)
+ * Assuming the results of `fn` are stochastic and `fn` is slow, returns a preloading version of the function.
+ * Will attempt to maintain a buffer of preloadCount results.
+ * If `fn` fails during the preload, there will be a retry.
  */
-function preload<T>(fn: () => Promise<T>): () => Promise<T> {
-  let next = fn();
+export function preload<T>(
+  fn: () => Promise<T>,
+  preloadCount: number
+): () => Promise<T> {
+  let preloaded: T[] = [];
 
-  return () => {
-    const current = next;
+  function fillBuffer() {
+    for (let i = preloadCount - preloaded.length; i > 0; i--) {
+      fn().then((res) => preloaded.push(res), logError);
+    }
+  }
 
-    next = fn().catch((e) => {
-      logError(e);
+  fillBuffer();
 
-      // if fn fails, return the old value
-      return current;
-    });
+  return async () => {
+    try {
+      const [first] = preloaded.splice(0, 1);
 
-    return current;
+      return first ? first : fn();
+    } finally {
+      fillBuffer();
+    }
   };
 }
 
-const buildFetchQuestions = () => preload(() => fetchQuestions());
+const buildFetchQuestions = (preloadCount: number) =>
+  preload(fetchQuestions, preloadCount);
 
 export default buildFetchQuestions;

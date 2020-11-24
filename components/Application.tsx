@@ -14,7 +14,6 @@ export default function Application({
 }: {
   questions: Question[];
   onError: (e: Error) => void;
-  fetch?: Fetch;
 }) {
   const [questions, setQuestions] = useState<Question[]>(initialQuestions);
   const [answers, setAnswers] = useState<Record<number, boolean>>({});
@@ -28,7 +27,8 @@ export default function Application({
     (_, index) => answers[index] == undefined
   );
 
-  const fetchQuestions = useMemo(() => buildFetchQuestions(), []);
+  const preloadCount = 1;
+  const fetchQuestions = useMemo(() => buildFetchQuestions(preloadCount), []);
 
   const onStart = () => setStarted(true);
   const onRestart = () => {

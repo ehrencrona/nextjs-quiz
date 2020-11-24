@@ -8,29 +8,32 @@ import Question from "../model/Question";
 import globalStyles from "../styles/globalStyles";
 import theme from "../styles/theme";
 
-const fetchQuestions = buildFetchQuestions();
+/** Increase on servers with high load */
+const serverSidePreloadCount = 2;
+
+const fetchQuestions = buildFetchQuestions(serverSidePreloadCount);
 
 export async function getServerSideProps() {
   let questions: Question[];
-  let error: string = null;
+  let error: string;
 
   try {
     questions = await fetchQuestions();
   } catch (e) {
     logError(e);
 
-    error = e.message;
+    error = e.message || 'Failed to load questions';
   }
 
   return {
     props: {
-      questions,
-      error,
+      questions: questions || null,
+      error: error || null,
     },
   };
 }
 
-export default function Home({
+export default function Index({
   questions,
   error: initialError,
 }: {

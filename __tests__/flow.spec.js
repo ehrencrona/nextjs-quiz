@@ -1,6 +1,9 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
 import Index from "../pages/index";
+import { mockFetch } from "../model/fetch";
+
+jest.mock("../model/fetch");
 
 const category = "Gödel";
 const questionText = "This sentence is true.";
@@ -16,12 +19,11 @@ const secondQuestion = { ...question, question: secondQuestionText };
 
 test("can go through entire flow", async () => {
   // these are the questions for the second runthrough
-  global.fetch = async () => ({
-    async json() {
-      return {
-        results: [secondQuestion],
-      };
-    },
+  mockFetch({
+    ok: true,
+    json: async () => ({
+      results: [secondQuestion],
+    }),
   });
 
   const { getByText, container } = render(<Index questions={[question]} />);
