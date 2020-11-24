@@ -1,5 +1,6 @@
 import Question from "../model/Question";
 import theme from "../styles/theme";
+import Page from "./Page";
 
 const Results = ({
   questions,
@@ -18,7 +19,7 @@ const Results = ({
   ).length;
 
   return (
-    <div>
+    <Page buttons={[{ label: "Play again", onClick: onRestart }]}>
       <h2>
         You scored {correctCount} out of {questions.length}
       </h2>
@@ -29,18 +30,11 @@ const Results = ({
           className={
             "answer " + (isCorrect(questionNumber) ? "correct" : "incorrect")
           }
-          dangerouslySetInnerHTML={({__html:question.question})}>
-        </div>
+          dangerouslySetInnerHTML={{ __html: question.question }}
+        ></div>
       ))}
 
-      <button onClick={onRestart}>Play again</button>
-
       <style jsx>{`
-        .question {
-          width: ${theme.pageWidth};
-          max-width: 100%;
-        }
-
         h2 {
           font-size: 1.6rem;
           letter-spacing: 0.01em;
@@ -74,16 +68,8 @@ const Results = ({
         .incorrect::before {
           content: "-";
         }
-
-        .number {
-          font-size: 0.8rem;
-        }
-
-        .buttons button {
-          margin-right: 1em;
-        }
       `}</style>
-    </div>
+    </Page>
   );
 };
 

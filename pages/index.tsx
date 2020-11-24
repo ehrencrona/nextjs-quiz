@@ -22,7 +22,7 @@ export async function getServerSideProps() {
   } catch (e) {
     logError(e);
 
-    error = e.message || 'Failed to load questions';
+    error = e.message || "Failed to load questions";
   }
 
   return {
@@ -65,9 +65,10 @@ export default function Index({
 
       <style jsx>{`
         .container {
-          min-width: 0;
-          max-width: ${theme.pageWidth};
-          padding: 1em;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       `}</style>
 

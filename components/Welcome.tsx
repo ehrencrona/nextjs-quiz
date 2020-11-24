@@ -1,15 +1,14 @@
 import theme from "../styles/theme";
+import Page from "./Page";
 
 const Welcome = ({ onStart }) => {
   return (
-    <div>
+    <Page buttons={[{ label: "Begin", onClick: onStart }]}>
       <h1>Welcome to the Trivia Challenge!</h1>
 
       <p>You will be presented with 10 true or false questions.</p>
-      
-      <p>Can you score 100%?</p>
 
-      <button onClick={onStart}>Begin</button>
+      <p>Can you score 100%?</p>
 
       <style jsx>{`
         h1 {
@@ -19,7 +18,7 @@ const Welcome = ({ onStart }) => {
           color: ${theme.colors.accent};
         }
       `}</style>
-    </div>
+    </Page>
   );
 };
 

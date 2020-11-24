@@ -1,13 +1,14 @@
 import theme from "../styles/theme";
+import Page from "./Page";
 
 const Error = ({ message }) => {
   return (
-    <div>
+    <Page
+      buttons={[{ label: "Reload", onClick: () => document.location.reload() }]}
+    >
       <h1>An internal error occurred</h1>
       <p>Sorry. Please try reloading the page.</p>
       <p>Error message: "{message}"</p>
-
-      <button onClick={() => document.location.reload()}>Reload</button>
       <style jsx>{`
         h1 {
           font-size: 2em;
@@ -16,7 +17,7 @@ const Error = ({ message }) => {
           color: ${theme.colors.accent};
         }
       `}</style>
-    </div>
+    </Page>
   );
 };
 

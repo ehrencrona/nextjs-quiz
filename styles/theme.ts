@@ -4,6 +4,5 @@ export default {
     foreground: '#c0c0c0',
     accent: '#d46d03',
     hoverAccent: '#ff8100'
-  },
-  pageWidth: '500px'
+  }
 }

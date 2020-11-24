@@ -25,28 +25,8 @@ export default css.global`
   }
 
   #__next {
-    min-height: 100%;
+    height: 100%;
     background-color: ${theme.colors.background};
     color: ${theme.colors.foreground};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  button {
-    color: black;
-    background-color: ${theme.colors.accent};
-    border: none;
-    padding: 0.5em 0.8em;
-    font-family: inherit;
-    font-size: inherit;
-    border-radius: 0.1em;
-    margin-top: 2em;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  button:hover {
-    background-color: ${theme.colors.hoverAccent};
   }
 `;

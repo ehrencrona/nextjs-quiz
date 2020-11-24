@@ -1,25 +1,23 @@
 import theme from "../styles/theme";
+import Page from "./Page";
 
 const AskQuestion = ({ question, questionNumber, questionCount, onAnswer }) => {
   return (
-    <div className='question'>
-      <h4>{question.category}</h4>
-      <h2 dangerouslySetInnerHTML={({__html:question.question})}></h2>
-      <div className='number'>
-        {questionNumber + 1} / {questionCount}
-      </div>
-
-      <div className="buttons">
-        <button onClick={() => onAnswer(true)}>True</button>
-        <button onClick={() => onAnswer(false)}>False</button>
+    <Page
+      buttons={[
+        { label: "True", onClick: () => onAnswer(true) },
+        { label: "False", onClick: () => onAnswer(false) },
+      ]}
+    >
+      <div className="content">
+        <h4>{question.category}</h4>
+        <h2 dangerouslySetInnerHTML={{ __html: question.question }}></h2>
+        <div className="number">
+          {questionNumber + 1} / {questionCount}
+        </div>
       </div>
 
       <style jsx>{`
-        .question {
-          width: ${theme.pageWidth};
-          max-width: 100%;
-        }
-
         h4 {
           font-size: 1em;
           font-weight: 600;
@@ -34,14 +32,10 @@ const AskQuestion = ({ question, questionNumber, questionCount, onAnswer }) => {
         }
 
         .number {
-          font-size: .8rem;
-        }
-
-        .buttons button {
-          margin-right: 1em;
+          font-size: 0.8rem;
         }
       `}</style>
-    </div>
+    </Page>
   );
 };
 
