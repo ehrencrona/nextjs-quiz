@@ -39,15 +39,15 @@ const Page = ({
       .content {
         padding: 1em;
         min-height: ${contentMinHeight};
-        max-height: 100vh;
-        padding-bottom: ${buttonsHeight};
+        max-height: calc(100vh - ${buttonsHeight});
+        box-sizing: border-box;
+        margin-bottom: ${buttonsHeight};
 
         /* TODO: some visual indicator that the element is scrollable */
         overflow-y: scroll;
       }
 
       .buttons {
-        background-color: ${theme.colors.background};
         display: flex;
         align-items: center;
         padding: 0 1em;
@@ -55,8 +55,6 @@ const Page = ({
         position: fixed;
         bottom: 0;
         height: ${buttonsHeight};
-        left: 0;
-        right: 0;
       }
 
       /* only put buttons at the bottom of the screen on small screens, otherwise they're too far from the content */
