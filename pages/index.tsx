@@ -8,10 +8,11 @@ import Question from "../model/Question";
 import globalStyles from "../styles/globalStyles";
 import theme from "../styles/theme";
 
+const fetchQuestions = buildFetchQuestions();
+
 export async function getServerSideProps() {
   let questions: Question[];
   let error: string = null;
-  const fetchQuestions = buildFetchQuestions();
 
   try {
     questions = await fetchQuestions();
@@ -35,6 +36,7 @@ export default function Home({
 }: {
   questions: Question[];
   error: string;
+  time: number;
 }) {
   const [error, setError] = useState<string>(initialError);
   return (

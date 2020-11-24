@@ -8,7 +8,7 @@ export type Fetch = (
 
 function fetchQuestions(): Promise<Question[]> {
   // window.fetch allows us to inject a mocked fetch in the tests
-  const reallyFetch = typeof window !== 'undefined' && window.fetch || fetch;
+  const reallyFetch = (typeof window !== "undefined" && window.fetch) || fetch;
 
   // TODO: we might want short timeouts on the server side
   return reallyFetch("https://opentdb.com/api.php?amount=10&type=boolean")
