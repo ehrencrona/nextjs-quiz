@@ -8,6 +8,6 @@ Try it on https://nextjs-quiz.vercel.app/
 
 [Tests](./__tests__) are based on React Testing Library and test at a component level.
 
-![Lighthouse audit results](./lighthouse.png)
+![Lighthouse audit results](./lighthouse.jpg)
 
 ![Screenshot](./screenshot.png)
