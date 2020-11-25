@@ -3,10 +3,10 @@
 exports[`result page shows correct answers 1`] = `
 <div>
   <div
-    class="jsx-305396568 page"
+    class="jsx-1356833245 page"
   >
     <div
-      class="jsx-305396568 content"
+      class="jsx-1356833245 content"
     >
       <h2
         class="jsx-1915113496"
@@ -33,10 +33,13 @@ exports[`result page shows correct answers 1`] = `
       </div>
     </div>
     <div
-      class="jsx-305396568 buttons"
+      class="jsx-1356833245 buttons"
     >
+      <div
+        class="jsx-1356833245 fade"
+      />
       <button
-        class="jsx-305396568"
+        class="jsx-1356833245"
       >
         Play again
       </button>

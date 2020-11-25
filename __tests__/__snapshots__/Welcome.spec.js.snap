@@ -3,10 +3,10 @@
 exports[`welcome page allows for starting 1`] = `
 <div>
   <div
-    class="jsx-305396568 page"
+    class="jsx-1356833245 page"
   >
     <div
-      class="jsx-305396568 content"
+      class="jsx-1356833245 content"
     >
       <h1
         class="jsx-2971654016"
@@ -25,10 +25,13 @@ exports[`welcome page allows for starting 1`] = `
       </p>
     </div>
     <div
-      class="jsx-305396568 buttons"
+      class="jsx-1356833245 buttons"
     >
+      <div
+        class="jsx-1356833245 fade"
+      />
       <button
-        class="jsx-305396568"
+        class="jsx-1356833245"
       >
         Begin
       </button>
