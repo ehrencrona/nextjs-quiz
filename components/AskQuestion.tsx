@@ -9,12 +9,10 @@ const AskQuestion = ({ question, questionNumber, questionCount, onAnswer }) => {
         { label: "False", onClick: () => onAnswer(false) },
       ]}
     >
-      <div className="content">
-        <h4>{question.category}</h4>
-        <h2 dangerouslySetInnerHTML={{ __html: question.question }}></h2>
-        <div className="number">
-          {questionNumber + 1} / {questionCount}
-        </div>
+      <h4>{question.category}</h4>
+      <h2 dangerouslySetInnerHTML={{ __html: question.question }}></h2>
+      <div className="number">
+        {questionNumber + 1} / {questionCount}
       </div>
 
       <style jsx>{`

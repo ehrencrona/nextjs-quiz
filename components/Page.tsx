@@ -23,6 +23,7 @@ const Page = ({
   <div className="page">
     <div className="content">{children}</div>
     <div className="buttons">
+      <div className='fade'></div>
       {buttons.map(({ label, onClick }, idx) => (
         <button key={idx} onClick={onClick}>
           {label}
@@ -39,15 +40,30 @@ const Page = ({
       .content {
         padding: 1em;
         min-height: ${contentMinHeight};
-        max-height: calc(100vh - ${buttonsHeight});
         box-sizing: border-box;
-        margin-bottom: ${buttonsHeight};
 
+        max-height: calc(100vh - ${buttonsHeight});
+        margin-bottom: ${buttonsHeight};
+        
         /* TODO: some visual indicator that the element is scrollable */
         overflow-y: scroll;
       }
 
+      /* Gradient (visible only when content overflows) gives a visual indicator that content is scrollable. */
+      .buttons .fade {
+        position: absolute;
+
+        left: 0;
+        right: 0;
+        top: -30px;
+        height: 30px;
+        margin-bottom: -30px;
+        background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1) 60%);
+      }
+
       .buttons {
+        width: ${pageWidth};
+        max-width: 100%;
         display: flex;
         align-items: center;
         padding: 0 1em;
@@ -64,7 +80,7 @@ const Page = ({
         }
 
         .buttons {
-          position: initial;
+          position: relative;
         }
       }
 
